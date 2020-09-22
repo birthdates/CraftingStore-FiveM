@@ -6,7 +6,7 @@ This resource brings support for CraftingStore in FiveM to life. No need to worr
 
 1. Installing the resource
 
-Download the resource (here)[https://github.com/birthdates/CraftingStore-FiveM/releases/download/1.0.0/FiveM.CraftingStore.rar].
+Download the resource https://github.com/birthdates/CraftingStore-FiveM/releases/download/1.0.0/FiveM.CraftingStore.rar.
 Drag the resource into your FiveM server's resource folder.
 Then add `start craftingstore` to your server.cfg.
 
