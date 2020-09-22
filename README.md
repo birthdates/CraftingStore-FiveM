@@ -3,6 +3,7 @@ This resource brings support for CraftingStore in FiveM to life. No need to worr
 
 # How to use
 
+
 1. Installing the resource
 
 Drag the resource into your FiveM server's resource folder.
