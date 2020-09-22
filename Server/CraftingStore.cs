@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
@@ -49,9 +50,11 @@ namespace Server
                     ids.Add(donation.id);
                     if (string.IsNullOrEmpty(donation.command)) continue;
                     // Execute commands
-                    var fullArgs = donation.command.Split(' ').ToList();
+                    var fullArgs = donation.command.Split(' ')
+                        .Select(arg => IsSteamId(arg) ? "steam:" + ulong.Parse(arg).ToString("X").ToLowerInvariant() : arg)
+                        .ToList();
                     var serverEvent = fullArgs[0];
-                    Log("Executing the event " + donation.command);
+                    Log("Executing the event " + serverEvent);
                     TriggerEvent(serverEvent, fullArgs.Where(arg => fullArgs.IndexOf(arg) != 0).ToArray<object>());
                 }
 
@@ -125,6 +128,11 @@ namespace Server
         {
             var commands = JsonConvert.DeserializeObject<ApiResponse>(response);
             return commands;
+        }
+        
+        public static bool IsSteamId(string id)
+        {
+            return ulong.TryParse(id, out var result) && result > 76561197960265728UL;
         }
 
         #endregion
