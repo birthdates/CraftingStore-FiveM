@@ -22,4 +22,4 @@ You can get your CraftingStore API key by creating a server on https://craftings
 
 Once you've navigated through CraftingStore and learned how to create a package (which you can view at https://help.craftingstore.net/) you now need to setup events. These events will be automatically executed by the CraftingStore resource. You will want to put your events in the commands tab. Use {uuid} and not {player} so you get their Steam ID. (RECOMMENDED)
 
-An example of an event would be esx:giveMoney {uuid} 1000
+An example of an event would be `esx:giveMoney {uuid} 1000`
