@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
@@ -51,7 +50,8 @@ namespace Server
                     if (string.IsNullOrEmpty(donation.command)) continue;
                     // Execute commands
                     var fullArgs = donation.command.Split(' ')
-                        .Select(arg => IsSteamId(arg) ? "steam:" + ulong.Parse(arg).ToString("X").ToLowerInvariant() : arg)
+                        .Select(arg =>
+                            IsSteamId(arg) ? "steam:" + ulong.Parse(arg).ToString("X").ToLowerInvariant() : arg)
                         .ToList();
                     var serverEvent = fullArgs[0];
                     Log("Executing the event " + serverEvent);
@@ -129,7 +129,7 @@ namespace Server
             var commands = JsonConvert.DeserializeObject<ApiResponse>(response);
             return commands;
         }
-        
+
         public static bool IsSteamId(string id)
         {
             return ulong.TryParse(id, out var result) && result > 76561197960265728UL;
@@ -163,7 +163,7 @@ namespace Server
             [JsonProperty("Refresh Time (seconds, has to above 5 minutes)")]
             public int RefreshTime = 300;
         }
-        
+
         #endregion
     }
 }
