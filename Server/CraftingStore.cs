@@ -40,9 +40,7 @@ namespace Server
                 }
 
                 var donations = parsedResponse.result;
-
                 var ids = new List<int>();
-
                 foreach (var donation in donations)
                 {
                     // Add donation to executed list.
@@ -57,7 +55,6 @@ namespace Server
                     Log("Executing the event " + serverEvent);
                     TriggerEvent(serverEvent, fullArgs.Where(arg => fullArgs.IndexOf(arg) != 0).ToArray<object>());
                 }
-
                 if (ids.Count <= 0) return;
                 // Mark as complete if there are commands processed
                 var serializedIds = JsonConvert.SerializeObject(ids);
